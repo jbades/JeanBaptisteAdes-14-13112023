@@ -1,0 +1,44 @@
+// Couleurs Basées sur le logo
+$color-primary: #5A730E; // Remplacez avec la couleur exacte du logo
+$color-secondary: #485E0A; // Remplacez avec la couleur exacte du logo
+$color-accent: #82A014; // Remplacez avec la couleur exacte du logo
+$color-background: #FFFFFF; // Remplacez avec la couleur exacte du fond du logo
+$color-text: #000000; // Remplacez avec la couleur exacte du texte du logo
+
+// Typographie
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap');
+
+$font-primary: 'Open Sans', sans-serif; // Police principale
+$font-secondary: 'Roboto', sans-serif; // Police secondaire
+
+// Utilitaires
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Classes
+.body-text {
+  font-family: $font-primary;
+  color: $color-text;
+}
+
+.header-text {
+  font-family: $font-secondary;
+  color: $color-primary;
+}
+
+.btn-primary {
+  background-color: $color-primary;
+  color: #fff;
+  @include flex-center;
+  padding: 1rem;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($color-primary, 10%);
+  }
+}
