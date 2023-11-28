@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { createSlice } from '@reduxjs/toolkit'
 
   const initialState = {
@@ -9,10 +10,13 @@ import { createSlice } from '@reduxjs/toolkit'
     name: 'userProfile',
     initialState,
     reducers: {
-        setEmployee: (state, action) => {
-          console.log(state, action.payload)
-          // state.employees.indexOf
-        }
+      setEmployee: (state, action) => {
+        // adding ID to employee-object
+        const employeeWithId = { ...action.payload, id: uuidv4() };
+      
+        // adding employee-object to global state
+        state.employees.push(employeeWithId);
+      }
     }
   });
 

@@ -34,7 +34,7 @@ const store = configureStore ({
         userProfile: persistedReducer
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(
-      // actionLoggerMiddleware, 
+      actionLoggerMiddleware, 
       // logoutMiddleware
     )
 })

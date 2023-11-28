@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useDispatch } from "react-redux"
 import { setEmployee } from '../../../features/userProfile'
+import Dropdown from 'react-bootstrap/Dropdown';
 
 export default function SignInForm () {
 
@@ -22,7 +23,7 @@ export default function SignInForm () {
         e.preventDefault()
 
         // creating employee-object
-        const employeeData = {
+        const employee = {
             firstName: firstName,
             lastName: lastName,
             birthday: birthday,
@@ -37,7 +38,7 @@ export default function SignInForm () {
         }
 
         // updating global state
-        dispatch(setEmployee(employeeData))
+        dispatch(setEmployee(employee))
     }
 
     // rendering form
