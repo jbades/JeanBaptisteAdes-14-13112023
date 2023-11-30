@@ -11,17 +11,7 @@ const actionLoggerMiddleware = store => next => action => {
     return result
 }
 
-// logout middleware
-const logoutMiddleware = () => next => action => {
-
-    next(action)
-  
-    if (action.type === 'userProfile/logout') {
-    }
-  }
-
 // using redux-persist to secure 'localStorage'
-
 const persistConfig = {
     key: 'root',
     storage
@@ -34,16 +24,10 @@ const store = configureStore ({
         userProfile: persistedReducer
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(
-      actionLoggerMiddleware, 
-      // logoutMiddleware
+      actionLoggerMiddleware 
     )
 })
 
 const persistor = persistStore(store)
-
-// // state tracker
-// store.subscribe(() => {
-//     console.log("!!! New state: ", store.getState())
-// })
 
 export {store, persistor}

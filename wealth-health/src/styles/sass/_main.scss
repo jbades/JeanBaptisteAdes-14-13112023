@@ -1,15 +1,13 @@
-// @import "../../pages/user-dashboard/user-modal/user-modal";
+$primary: #5d750f;
+$secondary: #485e0a;
+$tertiary: #82a113;
+$dark: #485814;
+$font-primary: 'Open Sans', sans-serif;
+$font-secondary: 'Roboto', sans-serif;
+
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap');
-
-$color-primary: #5d750f; // Remplacez avec la couleur exacte du logo
-$color-secondary: #485e0a; // Remplacez avec la couleur exacte du logo
-$color-accent: #82a113; // Remplacez avec la couleur exacte du logo
-$color-background: #485814; // Remplacez avec la couleur exacte du fond du logo
-$color-text: #000000; // Remplacez avec la couleur exacte du texte du logo
-
-$font-primary: 'Open Sans', sans-serif; // Police principale
-$font-secondary: 'Roboto', sans-serif; // Police secondaire
+@import "../../../node_modules/bootstrap/scss/bootstrap";
 
 @mixin flex-center {
   display: flex;
@@ -28,8 +26,6 @@ html {
   font-family: $font-primary, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: $color-text;
 }
 
 body {
@@ -47,9 +43,9 @@ body {
   flex: 1;
 }
 
-.bg-dark {
-  background-color: $color-background;
-}
+// .bg-dark {
+//   background-color: $color-background;
+// }
 
 .sr-only {
   border: 0 !important;
@@ -74,7 +70,7 @@ body {
 
 .main-nav a {
   font-weight: bold;
-  color: $color-secondary;
+  color: $secondary;
 }
 
 .main-nav a.router-link-exact-active {
@@ -145,7 +141,7 @@ body {
 
 .feature-icon {
   width: 100px;
-  border: 10px solid $color-accent;
+  border: 10px solid $tertiary;
   border-radius: 50%;
   padding: 1rem;
 }
@@ -169,20 +165,21 @@ body {
   font-size: 1.1rem;
   font-weight: bold;
   margin-top: 1rem;
-  border-color: $color-accent;
-  background-color: $color-accent;
+  border-color: $tertiary;
+  background-color: $tertiary;
   color: #fff;
   cursor: pointer;
 
   &:hover {
-    background-color: darken($color-primary, 0.1%);
+    background-color: darken($primary, 0.1%);
   }
 }
 
 .sign-in-content {
   box-sizing: border-box;
   background-color: white;
-  width: 300px;
+  width: 75%;
+  max-width: 700px;
   margin: 0 auto;
   margin-top: 3rem;
   padding: 2rem;
@@ -290,13 +287,13 @@ body {
   color: #fff;
 }
 
-.field-wrapper {
-  @include flex-field;
+// .field-wrapper {
+//   @include flex-field;
 
-  & input {
-    width: -webkit-fill-available;
-  }
-}
+//   & input {
+//     width: -webkit-fill-available;
+//   }
+// }
 
 @media (min-width: 920px) {
   .features {

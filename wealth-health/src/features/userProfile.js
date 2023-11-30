@@ -20,11 +20,11 @@ import { createSlice } from '@reduxjs/toolkit'
       
         if (index !== -1) {
           // if match, update employee data
-          state.employees[index] = { ...action.payload, id: state.employees[index].id };
+          state.employees[index] = { ...action.payload, id: state.employees[index].id }
         } else {
           // if not, create an ID & add new employee
-          const employeeWithId = { ...action.payload, id: uuidv4() };
-          state.employees.push(employeeWithId);
+          const employeeWithId = { ...action.payload, id: uuidv4() }
+          state.employees.push(employeeWithId)
         }
       }
     }

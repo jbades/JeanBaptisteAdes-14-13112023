@@ -4,7 +4,7 @@ import Menu from './menu/Menu'
 export default function Header() {
 
     return <nav className="main-nav">
-        <NavLink className="main-nav-logo" to="/">
+        <NavLink className="main-nav-logo" to="/current-employees">
             <img 
                 className="main-nav-logo-image" 
                 src="/assets/img/Logo.png" 

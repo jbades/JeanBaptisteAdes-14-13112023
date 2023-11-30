@@ -9,8 +9,6 @@ import Error from './pages/404NotFound/404NotFound'
 import Footer from './layouts/footer/Footer'
 import ViewCurrentEmployees from './pages/viewCurrentEmployees/ViewCurrentEmployees'
 import CreateEmployee from './pages/createEmployee/CreateEmployee'
-import UserAuth from './pages/viewCurrentEmployees/userAuth/UserAuth'
-import SignInAuth from './pages/createEmployee/signinAuth/SignInAuth'
 
 export default function App() {
 
@@ -22,17 +20,13 @@ export default function App() {
         <Route 
           path="/create-employee" 
           element={
-            <SignInAuth>
-              <CreateEmployee/>
-            </SignInAuth>
+            <CreateEmployee/>
           }
         />
         <Route 
           path="/current-employees" 
           element={
-            <UserAuth>
-              <ViewCurrentEmployees/>
-            </UserAuth>
+            <ViewCurrentEmployees/>
           } 
         />
         <Route 
