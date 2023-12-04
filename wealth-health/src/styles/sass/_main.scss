@@ -8,6 +8,7 @@ $font-secondary: 'Roboto', sans-serif;
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap');
 @import "../../../node_modules/bootstrap/scss/bootstrap";
+@import "../../layouts/header/menu/menu";
 
 @mixin flex-center {
   display: flex;
@@ -61,7 +62,7 @@ body {
   white-space: nowrap !important; /* 3 */
 }
 
-.main-nav {
+header, .main-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -71,6 +72,10 @@ body {
 .main-nav a {
   font-weight: bold;
   color: $secondary;
+
+  &.active {
+    display: none;
+  }
 }
 
 .main-nav a.router-link-exact-active {

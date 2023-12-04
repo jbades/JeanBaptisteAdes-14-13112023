@@ -11892,7 +11892,7 @@ body {
   white-space: nowrap !important; /* 3 */
 }
 
-.main-nav {
+header, .main-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -11902,6 +11902,9 @@ body {
 .main-nav a {
   font-weight: bold;
   color: #485e0a;
+}
+.main-nav a.active {
+  display: none;
 }
 
 .main-nav a.router-link-exact-active {

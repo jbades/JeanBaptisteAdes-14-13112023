@@ -9,10 +9,17 @@ export default function ViewCurrentEmployees() {
     return <div>Loading...</div>
   }
 
+  const headMappings = {
+    lastName: 'Last Name',
+    firstName: 'First Name',
+    startDate: 'Start Date',
+    department: 'Department'
+  }
+
   // creating a filtered-tableheads array
   const tableHeads = Object.keys(employees[0]).filter(key =>
-    ["firstName", "lastName", "startDate", "department"].includes(key)
-  );
+    Object.keys(headMappings).includes(key)
+  )
 
   // rendering the filtered-table
   return (
@@ -24,7 +31,7 @@ export default function ViewCurrentEmployees() {
           <thead>
             <tr>
               {tableHeads.map((head, index) => (
-                <th key={index}>{head}</th>
+                <th key={index}>{headMappings[head]}</th>
               ))}
             </tr>
           </thead>
