@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch } from "react-redux"
-import { setEmployee } from '../../../features/userProfile'
+import { setEmployee } from '../../../features/employeeProfile'
 import { useNavigate } from "react-router-dom"
 import Departments from "../../../assets/data/Departments.json"
 import States from "../../../assets/data/States.json"

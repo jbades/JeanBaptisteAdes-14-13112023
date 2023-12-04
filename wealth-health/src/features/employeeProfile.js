@@ -6,8 +6,8 @@ import { createSlice } from '@reduxjs/toolkit'
   }
 
   // reducers
-  const userSlice = createSlice({
-    name: 'userProfile',
+  const employeeSlice = createSlice({
+    name: 'employeeProfile',
     initialState,
     reducers: {
       setEmployee: (state, action) => {
@@ -31,6 +31,6 @@ import { createSlice } from '@reduxjs/toolkit'
   });
 
 // action creators
-export const { setEmployee } = userSlice.actions
+export const { setEmployee } = employeeSlice.actions
 
-export default userSlice.reducer;
+export default employeeSlice.reducer;

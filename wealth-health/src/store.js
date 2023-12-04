@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import userProfileReducer from './features/userProfile'
+import employeeProfileReducer from './features/employeeProfile'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
@@ -17,11 +17,11 @@ const persistConfig = {
     storage
   }
 
-const persistedReducer = persistReducer(persistConfig, userProfileReducer)
+const persistedReducer = persistReducer(persistConfig, employeeProfileReducer)
 
 const store = configureStore ({
     reducer: {
-        userProfile: persistedReducer
+        employeeProfile: persistedReducer
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(
       actionLoggerMiddleware 
