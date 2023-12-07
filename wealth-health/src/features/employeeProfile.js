@@ -2,7 +2,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { createSlice } from '@reduxjs/toolkit'
 
   const initialState = {
-    employees: []
+    employees: [],
+    employeeId: ""
   }
 
   // reducers
@@ -26,11 +27,14 @@ import { createSlice } from '@reduxjs/toolkit'
           const employeeWithId = { ...action.payload, id: uuidv4() }
           state.employees.push(employeeWithId)
         }
+      },
+      setEmployeeId: (state, action) => {
+        state.employeeId = action.payload
       }
     }
   });
 
 // action creators
-export const { setEmployee } = employeeSlice.actions
+export const { setEmployee, setEmployeeId } = employeeSlice.actions
 
 export default employeeSlice.reducer;

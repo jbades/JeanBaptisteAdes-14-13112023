@@ -12,6 +12,7 @@ export default function Header() {
             />
             <h1 className="sr-only">Wealth Health</h1>
         </Link>
+        <h2>HRnet</h2>
         <Menu />    
     </header>
 }

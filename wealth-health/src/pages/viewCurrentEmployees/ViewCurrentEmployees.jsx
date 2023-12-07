@@ -1,50 +1,111 @@
-import { useSelector } from "react-redux"
-import Table from 'react-bootstrap/Table'
+import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
+import BootstrapTable from 'react-bootstrap-table-next'
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css'
+// import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit'
+import paginator from "react-bootstrap-table2-paginator"
+import { setEmployeeId } from "../../features/employeeProfile"
+
+// const { SearchBar } = Search
+
+const pagination = paginator({})
 
 export default function ViewCurrentEmployees() {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const handleRowClick = (row) => {
+    dispatch(setEmployeeId(row.id))
+    navigate('/create-employee')
+  }
+
   const employees = useSelector((state) => state.employeeProfile.employees)
+
+  const columns = [{
+    dataField: 'lastName',
+    text: 'Last Name',
+    sort: true
+  }, {
+    dataField: 'firstName',
+    text: 'First Name',
+    sort: true
+  }, {
+    dataField: 'birthday',
+    text: 'Birthday',
+    sort: true
+  }, {
+    dataField: 'startDate',
+    text: 'Start Date',
+    sort: true
+  }, {
+    dataField: 'address.street',
+    text: 'Street',
+    sort: true
+  }, {
+    dataField: 'address.city',
+    text: 'City',
+    sort: true
+  }, {
+    dataField: 'address.zipcode',
+    text: 'Zipcode',
+    sort: true
+  }, {
+    dataField: 'address.state',
+    text: 'State',
+    sort: true
+  }, {
+    dataField: 'department',
+    text: 'Department',
+    sort: true
+  }]
+
+  const defaultSorted = [{
+    dataField: 'lastName',
+    order: 'asc'
+  }]
+
+  const selectRow = {
+    mode: 'radio',
+    clickToSelect: true,
+    onSelect: handleRowClick
+  }
 
   // error management
   if (!employees || employees.length === 0) {
-    return <div>Loading...</div>
+    return <div>The employees-list is currently empty.</div>
   }
-
-  const headMappings = {
-    lastName: 'Last Name',
-    firstName: 'First Name',
-    startDate: 'Start Date',
-    department: 'Department'
-  }
-
-  // creating a filtered-tableheads array
-  const tableHeads = Object.keys(employees[0]).filter(key =>
-    Object.keys(headMappings).includes(key)
-  )
 
   // rendering the filtered-table
   return (
     <main className="main bg-dark">
-      <section className="sign-in-content container mt-5">
+      <section className="sign-in-content container mt-5 col-sm-12">
         <i className="fa fa-user-circle sign-in-icon"></i>
         <h3 className="modal-title mb-4">Current Employees</h3>
-        <Table responsive>
-          <thead>
-            <tr>
-              {tableHeads.map((head, index) => (
-                <th key={index}>{headMappings[head]}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {employees.map((employee, index) => (
-              <tr key={index}>
-                {tableHeads.map(head => (
-                  <td key={head}>{employee[head]}</td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+        <div className="table-responsive">
+          {/* <ToolkitProvider
+            keyField="id"
+            data={ employees }
+            columns={ columns }
+            search
+          > */}
+            {/* {props => (
+              <div>
+                <SearchBar { ...props.searchProps } /> */}
+                <BootstrapTable
+                  // { ...props.baseProps }
+                  keyField="id"
+                  data={ employees }
+                  columns={ columns }
+                  bootstrap4
+                  defaultSorted={ defaultSorted }
+                  selectRow={ selectRow }
+                  hover
+                  pagination={pagination}
+                />
+              {/* </div> */}
+            {/* )} */}
+          {/* </ToolkitProvider> */}
+        </div>
       </section>
     </main>
   );

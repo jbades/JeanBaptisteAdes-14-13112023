@@ -11857,6 +11857,15 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+tbody tr {
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
 html {
   font-family: "Open Sans", sans-serif, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -11902,6 +11911,7 @@ header, .main-nav {
 .main-nav a {
   font-weight: bold;
   color: #485e0a;
+  text-align: end;
 }
 .main-nav a.active {
   display: none;
@@ -12012,11 +12022,11 @@ header, .main-nav {
 .sign-in-content {
   box-sizing: border-box;
   background-color: white;
-  width: 75%;
-  max-width: 700px;
-  margin: 0 auto;
+  width: 90%;
+  margin: 0 auto 3em;
   margin-top: 3rem;
   padding: 2rem;
+  border-radius: 10px;
 }
 
 .sign-in-icon {
@@ -12119,6 +12129,13 @@ header, .main-nav {
   border-color: #00bc77;
   background-color: #00bc77;
   color: #fff;
+}
+
+.form-label {
+  margin-bottom: 0;
+  margin-top: 10px;
+  font-size: 12px;
+  color: grey;
 }
 
 @media (min-width: 920px) {

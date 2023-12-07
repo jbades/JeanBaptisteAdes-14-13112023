@@ -9,6 +9,8 @@ $font-secondary: 'Roboto', sans-serif;
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap');
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 @import "../../layouts/header/menu/menu";
+@import "../../pages/viewCurrentEmployees/view-current-employees";
+@import "../../pages/createEmployee/createEmployeeForm/create-employee-form";
 
 @mixin flex-center {
   display: flex;
@@ -72,6 +74,7 @@ header, .main-nav {
 .main-nav a {
   font-weight: bold;
   color: $secondary;
+  text-align: end;
 
   &.active {
     display: none;
@@ -183,11 +186,11 @@ header, .main-nav {
 .sign-in-content {
   box-sizing: border-box;
   background-color: white;
-  width: 75%;
-  max-width: 700px;
-  margin: 0 auto;
+  width: 90%;
+  margin: 0 auto 3em;
   margin-top: 3rem;
   padding: 2rem;
+  border-radius: 10px;
 }
 
 .sign-in-icon {
@@ -292,13 +295,12 @@ header, .main-nav {
   color: #fff;
 }
 
-// .field-wrapper {
-//   @include flex-field;
-
-//   & input {
-//     width: -webkit-fill-available;
-//   }
-// }
+.form-label {
+  margin-bottom: 0;
+  margin-top: 10px;
+  font-size: 12px;
+  color: grey;
+}
 
 @media (min-width: 920px) {
   .features {

@@ -9,6 +9,7 @@ import Error from './pages/404NotFound/404NotFound'
 import Footer from './layouts/footer/Footer'
 import ViewCurrentEmployees from './pages/viewCurrentEmployees/ViewCurrentEmployees'
 import CreateEmployee from './pages/createEmployee/CreateEmployee'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 export default function App() {
 

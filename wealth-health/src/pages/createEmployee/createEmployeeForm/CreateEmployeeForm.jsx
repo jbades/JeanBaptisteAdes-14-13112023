@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { useDispatch } from "react-redux"
+import { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from "react-redux"
 import { setEmployee } from '../../../features/employeeProfile'
 import { useNavigate } from "react-router-dom"
 import Departments from "../../../assets/data/Departments.json"
@@ -11,7 +11,7 @@ export default function SignInForm () {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    // setting up local states
+    // setting up default-local-states
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [birthday, setBirthday] = useState(null)
@@ -21,6 +21,31 @@ export default function SignInForm () {
     const [state, setState] = useState("")
     const [zipcode, setZipcode] = useState("")
     const [department, setDepartment] = useState("")
+
+    // checking if employeeId exists in global-state
+    const store = useSelector((state) => {
+        return state.employeeProfile
+    })
+
+    useEffect(() => {
+        if (store.employeeId) {
+            // mapping selected-employee
+            const selectedEmployee = store.employees.filter((selectedEmployee) => {
+                return selectedEmployee.id === store.employeeId
+            })[0]
+            // updating local-state
+            setFirstName(selectedEmployee.firstName)
+            setLastName(selectedEmployee.lastName)
+            setBirthday(selectedEmployee.birthday)
+            setStartDate(selectedEmployee.startDate)
+            setStreet(selectedEmployee.address.street)
+            setCity(selectedEmployee.address.city)
+            setZipcode(selectedEmployee.address.zipcode)
+            setState(selectedEmployee.address.state)
+            setDepartment(selectedEmployee.department)
+
+        }
+    }, [store.employeeId, store.employees])
 
     // setting up global state on submit
     const handleSubmit = async (e) => {
@@ -59,7 +84,9 @@ export default function SignInForm () {
                         className="form-control" 
                         id="first-name" 
                         placeholder='Enter your first name'
-                        onInput={(e) => setFirstName(e.target.value)} 
+                        value={firstName}
+                        onInput={(e) => setFirstName(e.target.value)}
+                        required
                     />
                 </div>
 
@@ -70,7 +97,9 @@ export default function SignInForm () {
                         className="form-control" 
                         id="last-name" 
                         placeholder='Enter your last name'
+                        value={lastName}
                         onInput={(e) => setLastName(e.target.value)} 
+                        required
                     />
                 </div>
 
@@ -80,7 +109,9 @@ export default function SignInForm () {
                         type="date" 
                         className="form-control" 
                         id="birthday" 
-                        onInput={(e) => setBirthday(e.target.value)} 
+                        value={birthday}
+                        onInput={(e) => setBirthday(e.target.value)}
+                        required
                     />
                 </div>
 
@@ -90,7 +121,9 @@ export default function SignInForm () {
                         type="date" 
                         className="form-control" 
                         id="start-date" 
+                        value={startDate}
                         onInput={(e) => setStartDate(e.target.value)} 
+                        required
                     />
                 </div>
 
@@ -104,6 +137,7 @@ export default function SignInForm () {
                                 className='form-control' 
                                 type="text"
                                 placeholder="Enter your street"
+                                value={street}
                                 onInput={(e) => setStreet(e.target.value)} 
                                 required="required"
                             />
@@ -116,6 +150,7 @@ export default function SignInForm () {
                                 className='form-control' 
                                 type="text" 
                                 placeholder="Enter your city"
+                                value={city}
                                 onInput={(e) => setCity(e.target.value)} 
                                 required="required"
                             />
@@ -147,6 +182,7 @@ export default function SignInForm () {
                                 className='form-control' 
                                 type="text" 
                                 placeholder="Enter your zipcode"
+                                value={zipcode}
                                 onInput={(e) => setZipcode(e.target.value)} 
                                 required="required"
                             />
@@ -160,7 +196,7 @@ export default function SignInForm () {
                         <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
                             {department || "Choose your department"}
                         </Dropdown.Toggle>
-                        <Dropdown.Menu>
+                        <Dropdown.Menu className='dropdown-menu'>
                             {Departments.map((dept, index) => (
                                 <Dropdown.Item
                                     key={index}
