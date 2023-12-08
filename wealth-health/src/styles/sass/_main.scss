@@ -10,7 +10,7 @@ $font-secondary: 'Roboto', sans-serif;
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 @import "../../layouts/header/menu/menu";
 @import "../../pages/viewCurrentEmployees/view-current-employees";
-@import "../../pages/createEmployee/createEmployeeForm/create-employee-form";
+@import "../../pages/createEmployee/create-employee";
 
 @mixin flex-center {
   display: flex;

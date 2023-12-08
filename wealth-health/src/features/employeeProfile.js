@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
   const initialState = {
     employees: [],
-    employeeId: ""
+    employeeId: "", 
+    showModal: false
   }
 
   // reducers
@@ -30,11 +31,14 @@ import { createSlice } from '@reduxjs/toolkit'
       },
       setEmployeeId: (state, action) => {
         state.employeeId = action.payload
+      }, 
+      setModalStatus: (state, action) => {
+        state.showModal = action.payload
       }
     }
   });
 
 // action creators
-export const { setEmployee, setEmployeeId } = employeeSlice.actions
+export const { setEmployee, setEmployeeId, setModalStatus } = employeeSlice.actions
 
 export default employeeSlice.reducer;

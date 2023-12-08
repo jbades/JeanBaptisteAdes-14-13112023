@@ -102,9 +102,9 @@ export default function ViewCurrentEmployees() {
                   hover
                   pagination={pagination}
                 />
-              {/* </div> */}
-            {/* )} */}
-          {/* </ToolkitProvider> */}
+                {/* </div>
+              )}
+            </ToolkitProvider> */}
         </div>
       </section>
     </main>
