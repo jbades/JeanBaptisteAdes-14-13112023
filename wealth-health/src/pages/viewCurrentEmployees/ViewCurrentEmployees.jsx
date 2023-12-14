@@ -1,111 +1,99 @@
+// import React-related libraries
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import BootstrapTable from 'react-bootstrap-table-next'
-import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css'
-// import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit'
-import paginator from "react-bootstrap-table2-paginator"
+
+// import other libraries
+import { AgGridReact } from 'ag-grid-react'
+
+// import reducer
 import { setEmployeeId } from "../../features/employeeProfile"
 
-// const { SearchBar } = Search
-
-const pagination = paginator({})
+// import style sheets
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css'
+import 'ag-grid-community/styles/ag-grid.css'
+import 'ag-grid-community/styles/ag-theme-alpine.css'
 
 export default function ViewCurrentEmployees() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-
+  
+  const employees = useSelector((state) => state.employeeProfile.employees)
+  
   const handleRowClick = (row) => {
-    dispatch(setEmployeeId(row.id))
+    dispatch(setEmployeeId(row.data.id))
     navigate('/create-employee')
   }
 
-  const employees = useSelector((state) => state.employeeProfile.employees)
 
   const columns = [{
-    dataField: 'lastName',
-    text: 'Last Name',
-    sort: true
+    field: 'lastName',
+    headerName: 'Last Name',
+    sortable: true,
+    filter: 'agTextColumnFilter'
   }, {
-    dataField: 'firstName',
-    text: 'First Name',
-    sort: true
+    field: 'firstName',
+    headerName: 'First Name',
+    sortable: true,
+    filter: 'agTextColumnFilter'
   }, {
-    dataField: 'birthday',
-    text: 'Birthday',
-    sort: true
+    field: 'birthday',
+    headerName: 'Birthday',
+    sortable: true,
+    filter: 'agTextColumnFilter'
   }, {
-    dataField: 'startDate',
-    text: 'Start Date',
-    sort: true
+    field: 'startDate',
+    headerName: 'Start Date',
+    sortable: true,
+    filter: 'agTextColumnFilter'
   }, {
-    dataField: 'address.street',
-    text: 'Street',
-    sort: true
+    field: 'address.street',
+    headerName: 'Street',
+    sortable: true,
+    filter: 'agTextColumnFilter'
   }, {
-    dataField: 'address.city',
-    text: 'City',
-    sort: true
+    field: 'address.city',
+    headerName: 'City',
+    sortable: true,
+    filter: 'agTextColumnFilter'
   }, {
-    dataField: 'address.zipcode',
-    text: 'Zipcode',
-    sort: true
+    field: 'address.zipcode',
+    headerName: 'Zipcode',
+    sortable: true,
+    filter: 'agTextColumnFilter'
   }, {
-    dataField: 'address.state',
-    text: 'State',
-    sort: true
+    field: 'address.state',
+    headerName: 'State',
+    sortable: true,
+    filter: 'agTextColumnFilter'
   }, {
-    dataField: 'department',
-    text: 'Department',
-    sort: true
+    field: 'department',
+    headerName: 'Department',
+    sortable: true,
+    filter: 'agTextColumnFilter'
   }]
-
-  const defaultSorted = [{
-    dataField: 'lastName',
-    order: 'asc'
-  }]
-
-  const selectRow = {
-    mode: 'radio',
-    clickToSelect: true,
-    onSelect: handleRowClick
-  }
 
   // error management
   if (!employees || employees.length === 0) {
-    return <div>The employees-list is currently empty.</div>
+    return <div>The employees-list is currently empty.</div>;
   }
-
+  
   // rendering the filtered-table
   return (
     <main className="main bg-dark">
       <section className="sign-in-content container mt-5 col-sm-12">
         <i className="fa fa-user-circle sign-in-icon"></i>
         <h3 className="modal-title mb-4">Current Employees</h3>
-        <div className="table-responsive">
-          {/* <ToolkitProvider
-            keyField="id"
-            data={ employees }
-            columns={ columns }
-            search
-          > */}
-            {/* {props => (
-              <div>
-                <SearchBar { ...props.searchProps } /> */}
-                <BootstrapTable
-                  // { ...props.baseProps }
-                  keyField="id"
-                  data={ employees }
-                  columns={ columns }
-                  bootstrap4
-                  defaultSorted={ defaultSorted }
-                  selectRow={ selectRow }
-                  hover
-                  pagination={pagination}
-                />
-                {/* </div>
-              )}
-            </ToolkitProvider> */}
-        </div>
+          <div className="ag-theme-alpine">
+            <AgGridReact
+              rowData={employees}
+              columnDefs={columns}
+              onRowClicked={handleRowClick}
+              rowSelection="single"
+              floatingFilter={true}
+              pagination={true}
+              paginationAutoPageSize={true}
+            />
+          </div>
       </section>
     </main>
   );
