@@ -75,6 +75,7 @@ header, .main-nav {
   font-weight: bold;
   color: $secondary;
   text-align: end;
+  text-decoration: none;
 
   &.active {
     display: none;
@@ -86,7 +87,6 @@ header, .main-nav {
 }
 
 .main-nav-item {
-  text-decoration: none;
   margin-right: 0.5rem;
 
   i:before {

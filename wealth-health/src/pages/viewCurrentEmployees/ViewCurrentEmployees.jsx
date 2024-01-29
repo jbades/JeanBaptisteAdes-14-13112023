@@ -9,7 +9,6 @@ import { AgGridReact } from 'ag-grid-react'
 import { setEmployeeId } from "../../features/employeeProfile"
 
 // import style sheets
-import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css'
 import 'ag-grid-community/styles/ag-grid.css'
 import 'ag-grid-community/styles/ag-theme-alpine.css'
 
@@ -24,7 +23,7 @@ export default function ViewCurrentEmployees() {
     navigate('/create-employee')
   }
 
-
+  // setting table columns
   const columns = [{
     field: 'lastName',
     headerName: 'Last Name',

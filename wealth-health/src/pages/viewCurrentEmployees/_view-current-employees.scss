@@ -8,3 +8,8 @@ tbody {
     width: 100%;
     height: 400px;
 }
+
+.ag-paging-panel {
+    flex-flow: column nowrap;
+    gap: 5px;
+}

@@ -8,6 +8,9 @@ import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import Dropdown from 'react-bootstrap/Dropdown'
 
+// date-picking custom package
+import DayPicker from 'pikaday4react-test'
+
 // reducer
 import { setEmployee, setModalStatus } from "../../features/employeeProfile"
 
@@ -37,6 +40,15 @@ export default function SignIn() {
     const [state, setState] = useState("")
     const [zipcode, setZipcode] = useState("")
     const [department, setDepartment] = useState("")
+
+    // getting and setting dates in local-state
+    const handleChange = (newDate, id) => {
+        if (id==="birthday") {
+            setBirthday(newDate)  
+        } else if (id==="start-date") {
+            setStartDate(newDate)
+        }
+      }
 
     // checking if employeeId exists in global-state
     const store = useSelector((state) => {
@@ -89,6 +101,8 @@ export default function SignIn() {
 
         // updating global state
         dispatch(setEmployee(employee))
+
+        // popping-up modal
         dispatch(setModalStatus(true))
 
         // redirecting to employees-list
@@ -96,6 +110,7 @@ export default function SignIn() {
         dispatch(setModalStatus(false))
     }
 
+    // rendering form
     return <main className="main bg-dark">
         <section className="sign-in-content container mt-5">
             <i className="fa fa-user-circle sign-in-icon"></i>
@@ -130,25 +145,23 @@ export default function SignIn() {
 
                     <div className="col-md-6">
                         <label htmlFor="birtday" className="form-label">Birthday</label>
-                        <input 
-                            type="date" 
+                        <DayPicker
+                            type="text" 
                             className="form-control" 
                             id="birthday" 
                             value={birthday}
-                            onInput={(e) => setBirthday(e.target.value)}
-                            required
+                            onChange={(newDate) => handleChange(newDate, "birthday")}
                         />
                     </div>
 
                     <div className="col-md-6">
                         <label htmlFor="start-date" className="form-label">Start Date</label>
-                        <input 
-                            type="date" 
+                        <DayPicker 
+                            type="text" 
                             className="form-control" 
                             id="start-date" 
                             value={startDate}
-                            onInput={(e) => setStartDate(e.target.value)} 
-                            required
+                            onChange={(newDate) => handleChange(newDate, "start-date")}
                         />
                     </div>
 
@@ -236,7 +249,7 @@ export default function SignIn() {
                 </div>
 
                 <div className="mt-4 text-center">
-                    <button type="submit" className="btn btn-primary col-6 mx-auto">Submit</button>
+                    <Button variant="primary" type="submit">Submit</Button>
                 </div>
             </form>
         </section>
