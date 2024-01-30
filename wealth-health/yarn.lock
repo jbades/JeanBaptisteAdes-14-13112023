@@ -2630,17 +2630,17 @@ adjust-sourcemap-loader@^4.0.0:
     loader-utils "^2.0.0"
     regex-parser "^2.2.11"
 
-ag-grid-community@^31.0.1, ag-grid-community@~31.0.2:
-  version "31.0.2"
-  resolved "https://registry.yarnpkg.com/ag-grid-community/-/ag-grid-community-31.0.2.tgz#8421c4e23e29205628281c1258808e83dccdada2"
-  integrity sha512-gxUdHeAZUV2TDHqnDax5QSQgUxIvJ1zaFxUuPzcfiiPwbN6btz6kxg/KNrDfEjQi70JBfJV46BMR9KTG6iAVmQ==
+ag-grid-community@^31.0.3, ag-grid-community@~31.0.3:
+  version "31.0.3"
+  resolved "https://registry.yarnpkg.com/ag-grid-community/-/ag-grid-community-31.0.3.tgz#80870881a3be03aa5df890b4a70409ef5d781e7f"
+  integrity sha512-k81YmLaOQOab9BavYD+Pw2smZSl6TXOJqj9hRuf70XQl3EknOHCGcra7joJxZRJLMKE/HdR+u33TNyX4TCuWfg==
 
-ag-grid-react@^31.0.1:
-  version "31.0.2"
-  resolved "https://registry.yarnpkg.com/ag-grid-react/-/ag-grid-react-31.0.2.tgz#3675cdbd123e3c0e1e648cf0b68d3a482254b210"
-  integrity sha512-QAC5Rsr4AaE+vCafyrnEJa7JWcmoXNzJyzZmln0T6QCLG43IuT2hZ3ULmce/IqwP2Kxf+B4hVJOVitVT9SdXkg==
+ag-grid-react@^31.0.3:
+  version "31.0.3"
+  resolved "https://registry.yarnpkg.com/ag-grid-react/-/ag-grid-react-31.0.3.tgz#4f9634129f37bd59de34529d62dff158115ca225"
+  integrity sha512-CE4Z5Rdb0H3MFBhmge9854AyDvI4DoG7ZoUJRFB1p2pu5ANVe6tv7cwEI/ugHemEXRRP6s5uvW+ndv0Q6x1/+Q==
   dependencies:
-    ag-grid-community "~31.0.2"
+    ag-grid-community "~31.0.3"
     prop-types "^15.8.1"
 
 ag-grid@^18.1.2:
@@ -7240,13 +7240,6 @@ performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha512-7EAHlyLHI56VEIdK57uwHdHKIaAGbnXPiw0yWbarQZOKaKpvUIgW0jWRVLiatnM+XXlSwsanIBH/hzGMJulMow==
-
-pickadayoc@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/pickadayoc/-/pickadayoc-1.0.2.tgz#45cbd357df90c1b340b2f513539bedacc5b4912c"
-  integrity sha512-lgeOWu9iYGbOPdCRBk+NcGuSnnQWs2Rq99ZUH7IeQvYgMc0zTuzP3pAAG7UBmwcXy4wtUlGmW/vvqSIQuV40+A==
-  dependencies:
-    pikaday "^1.8.2"
 
 picocolors@^0.2.1:
   version "0.2.1"
