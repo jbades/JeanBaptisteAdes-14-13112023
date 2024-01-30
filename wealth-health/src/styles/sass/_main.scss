@@ -302,6 +302,14 @@ header, .main-nav {
   color: grey;
 }
 
+.customOverlay {
+  background-color: rgba(0, 0, 0, 0.5)
+}
+
+.customModal {
+  z-index: 1000
+}
+
 @media (min-width: 920px) {
   .features {
     flex-direction: row;
