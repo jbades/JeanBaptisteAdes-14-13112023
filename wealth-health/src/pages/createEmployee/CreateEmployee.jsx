@@ -1,11 +1,15 @@
 // react & redux libraries
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+// import { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 
-// react-components libraries
-import Modal from 'react-responsive-modal'
-import Select from 'react-select'
+// react-boostrap library
+import Button from 'react-bootstrap/Button'
+import Modal from 'react-bootstrap/Modal'
+import Dropdown from 'react-bootstrap/Dropdown'
+
+// date-picking custom package
 import DayPicker from 'pikaday4react-test'
 
 // reducer
@@ -38,18 +42,6 @@ export default function SignIn() {
     const [zipcode, setZipcode] = useState("")
     const [department, setDepartment] = useState("")
 
-    // creating an US-states list-object
-    const usStatesList = States.map((state) => ({
-        value: state.abbreviation,
-        label: state.name
-      }))
-
-    // creating a company-departments list-object
-    const departmentList = Departments.map((department) => ({
-        value: department,
-        label: department
-      }))
-
     // getting and setting dates in local-state
     const handleChange = (newDate, id) => {
         if (id==="birthday") {
@@ -59,30 +51,30 @@ export default function SignIn() {
         }
       }
 
-    // checking if employeeId exists in global-state
-    const store = useSelector((state) => {
-        return state.employeeProfile
-    })
+    // // checking if employeeId exists in global-state
+    // const store = useSelector((state) => {
+    //     return state.employeeProfile
+    // })
 
-    useEffect(() => {
-        if (store.employeeId) {
-            // mapping selected-employee
-            const selectedEmployee = store.employees.filter((selectedEmployee) => {
-                return selectedEmployee.id === store.employeeId
-            })[0]
-            // updating local-state
-            setFirstName(selectedEmployee.firstName)
-            setLastName(selectedEmployee.lastName)
-            setBirthday(selectedEmployee.birthday)
-            setStartDate(selectedEmployee.startDate)
-            setStreet(selectedEmployee.address.street)
-            setCity(selectedEmployee.address.city)
-            setZipcode(selectedEmployee.address.zipcode)
-            setState(selectedEmployee.address.state)
-            setDepartment(selectedEmployee.department)
+    // useEffect(() => {
+    //     if (store.employeeId) {
+    //         // mapping selected-employee
+    //         const selectedEmployee = store.employees.filter((selectedEmployee) => {
+    //             return selectedEmployee.id === store.employeeId
+    //         })[0]
+    //         // updating local-state
+    //         setFirstName(selectedEmployee.firstName)
+    //         setLastName(selectedEmployee.lastName)
+    //         setBirthday(selectedEmployee.birthday)
+    //         setStartDate(selectedEmployee.startDate)
+    //         setStreet(selectedEmployee.address.street)
+    //         setCity(selectedEmployee.address.city)
+    //         setZipcode(selectedEmployee.address.zipcode)
+    //         setState(selectedEmployee.address.state)
+    //         setDepartment(selectedEmployee.department)
 
-        }
-    }, [store.employeeId, store.employees])
+    //     }
+    // }, [store.employeeId, store.employees])
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -112,7 +104,7 @@ export default function SignIn() {
         dispatch(setEmployee(employee))
 
         // popping-up modal
-        dispatch(setModalStatus(true))
+        // dispatch(setModalStatus(true))
 
         // redirecting to employees-list
         navigate('/current-employees')
@@ -205,13 +197,21 @@ export default function SignIn() {
 
                             <div className='col-md-6'>
                                 <label htmlFor="state" className="form-label">State</label>
-                                <Select
-                                    className="w-100"
-                                    placeholder="Choose your state"
-                                    options={usStatesList}
-                                    value={usStatesList.find(selection => selection.label === state)}
-                                    onChange={(selection) => setState(selection.label)}
-                                />
+                                <Dropdown>
+                                    <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic" className='w-100'>
+                                    {state || "Choose your state"}
+                                    </Dropdown.Toggle>
+                                    <Dropdown.Menu>
+                                        {States.map((state) => {
+                                            return <Dropdown.Item
+                                                key={state.abbreviation}
+                                                onClick={() => setState(state.name)}
+                                                >
+                                                    {state.name}
+                                            </Dropdown.Item>
+                                        })}
+                                    </Dropdown.Menu>
+                                </Dropdown>
                             </div>
 
                             <div className="col-md-6">
@@ -231,43 +231,31 @@ export default function SignIn() {
 
                     <div className="col-md-6">
                         <label htmlFor="department" className="form-label">Department</label>
-                        <Select
-                            className="w-100"
-                            placeholder="Choose your department"
-                            options={departmentList}
-                            value={departmentList.find(selection => selection.label === department)}
-                            onChange={(selection) => setDepartment(selection.label)}
-                        />
+                        <Dropdown>
+                            <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
+                                {department || "Choose your department"}
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu className='dropdown-menu'>
+                                {Departments.map((dept, index) => (
+                                    <Dropdown.Item
+                                        key={index}
+                                        onClick={() => setDepartment(dept)}
+                                    >
+                                        {dept}
+                                    </Dropdown.Item>
+                                ))}
+                            </Dropdown.Menu>
+                        </Dropdown>
                     </div>
                 </div>
 
                 <div className="mt-4 text-center">
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <Button variant="primary" type="submit">Submit</Button>
                 </div>
             </form>
         </section>
-        <section>
-            <Modal 
-                classNames={{
-                    overlay: 'customOverlay',
-                    modal: 'customModal',
-                    closeButton: 'customCloseButton',
-                    closeIcon: 'customCloseIcon',
-                }}
-                open={show} 
-                onClose={handleClose} 
-                center
-            >
-                <h2>Employee information</h2>
-                
-                <p>Do you want to save this employee information?</p>
-                
-                <div className="modal-actions">
-                    <button className="btn btn-primary" onClick={handleModalClose}>Confirm</button>
-                    <button className="btn btn-secondary" onClick={handleClose}>Abort</button>
-                </div>  
-            </Modal>
-            {/* <Modal show={show} onHide={handleClose}>
+        <section className="modal">
+            <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Employee information</Modal.Title>
                 </Modal.Header>
@@ -277,10 +265,10 @@ export default function SignIn() {
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <button onClick={handleClose}>Abort</button>
-                    <button onClick={handleModalClose}>Confirm</button>
+                    <Button variant="secondary" onClick={handleClose}>Abort</Button>
+                    <Button variant="primary" onClick={handleModalClose}>Confirm</Button>
                 </Modal.Footer>
-            </Modal> */}
+            </Modal>
         </section>
     </main>
 }

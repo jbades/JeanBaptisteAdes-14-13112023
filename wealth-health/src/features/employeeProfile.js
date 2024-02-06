@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
   const initialState = {
     employees: [],
-    employeeId: "", 
+    // employeeId: "", 
     showModal: false
   }
 
@@ -13,22 +13,24 @@ import { createSlice } from '@reduxjs/toolkit'
     initialState,
     reducers: {
       setEmployee: (state, action) => {
-        // brings array-position if firstName, lastName & birthday match
-        const index = state.employees.findIndex(employee =>
-          employee.firstName === action.payload.firstName &&
-          employee.lastName === action.payload.lastName &&
-          employee.birthday === action.payload.birthday
-        );
+        // // brings array-position if firstName, lastName & birthday match
+        // const index = state.employees.findIndex(employee =>
+        //   employee.firstName === action.payload.firstName &&
+        //   employee.lastName === action.payload.lastName &&
+        //   employee.birthday === action.payload.birthday
+        // );
       
-        if (index !== -1) {
-          // if match, update employee data
-          state.employees[index] = { ...action.payload, id: state.employees[index].id }
-        } else {
-          // if not, create an ID & add new employee
-          const employeeWithId = { ...action.payload, id: uuidv4() }
-          state.employees.push(employeeWithId)
-        }
-      },
+        // if (index !== -1) {
+        //   // if match, update employee data
+        //   state.employees[index] = { ...action.payload, id: state.employees[index].id }
+        // } else {
+        //   // if not, create an ID & add new employee
+        //   const employeeWithId = { ...action.payload, id: uuidv4() }
+        //   state.employees.push(employeeWithId)
+        // }
+        const employeeWithId = { ...action.payload, id: uuidv4() }
+        state.employees.push(employeeWithId)
+    },
       setEmployeeId: (state, action) => {
         state.employeeId = action.payload
       }, 

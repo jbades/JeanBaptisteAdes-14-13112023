@@ -1,28 +1,29 @@
 // import React-related libraries
-import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
+// import { useDispatch, useSelector } from "react-redux"
+// import { useNavigate } from "react-router-dom"
 
 // import other libraries
 // import { AgGridReact } from 'ag-grid-react'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
 
 // import reducer
-import { setEmployeeId } from "../../features/employeeProfile"
+// import { setEmployeeId } from "../../features/employeeProfile"
 
 // import style sheets
 // import 'ag-grid-community/styles/ag-grid.css'
 // import 'ag-grid-community/styles/ag-theme-alpine.css'
 
 export default function ViewCurrentEmployees() {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  // const navigate = useNavigate()
+  // const dispatch = useDispatch()
   
   const employees = useSelector((state) => state.employeeProfile.employees)
   
-  const handleRowClick = (row) => {
-    dispatch(setEmployeeId(row.data.id))
-    navigate('/create-employee')
-  }
+  // const handleRowClick = (id) => {
+  //   dispatch(setEmployeeId(id))
+  //   navigate('/create-employee')
+  // }
 
 
   // setting table columns
@@ -104,7 +105,7 @@ export default function ViewCurrentEmployees() {
                         <TableRow
                             key={employee.id}
                             hover
-                            onClick={() => handleRowClick(employee.id)}
+                            // onClick={() => handleRowClick(employee.id)}
                             style={{ cursor: 'pointer' }}
                         >
                             <TableCell>{employee.lastName}</TableCell>
